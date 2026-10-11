@@ -133,7 +133,7 @@ footer b{color:#ff7180}
 .latest-updates{
   position:fixed;
   z-index:5;
-  top:17vh;
+  top:8%;
   right:18px;
   width:clamp(190px,18vw,285px);
   padding:14px 15px 13px;
@@ -162,6 +162,23 @@ footer b{color:#ff7180}
   .latest-item{padding-top:8px}
   .latest-item p{font-size:11px}
   .latest-item b{font-size:9px}
+}
+
+
+/* Final placement: keep Latest Updates clearly ABOVE the animated ArtBots logo */
+@media (min-width: 701px) {
+  .latest-updates, .updates-widget, .updates-panel {
+    top: 8% !important;
+    right: 1.5% !important;
+    z-index: 30 !important;
+  }
+}
+@media (max-width: 700px) {
+  .latest-updates, .updates-widget, .updates-panel {
+    top: 7% !important;
+    right: 3% !important;
+    z-index: 30 !important;
+  }
 }
 
 </style>
