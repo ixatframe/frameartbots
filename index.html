@@ -219,5 +219,51 @@ footer b{color:#ff7180}
 <div class="robot"><div class="orb"></div><img class="logo" src="assets/artbots-logo.jpg" alt="ArtBots robot logo"><div class="beam"></div></div>
 </section>
 </main>
+
+<!-- ArtBots: basic source-view deterrents (not a security boundary) -->
+<style>
+  html, body {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  img, a {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+</style>
+<script>
+(() => {
+  'use strict';
+
+  // Disable the context menu (right-click).
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Prevent selecting/copying page text and dragging images.
+  document.addEventListener('selectstart', event => event.preventDefault());
+  document.addEventListener('dragstart', event => event.preventDefault());
+  document.addEventListener('copy', event => event.preventDefault());
+  document.addEventListener('cut', event => event.preventDefault());
+
+  // Block common browser shortcuts used to view/save source or open developer tools.
+  document.addEventListener('keydown', event => {
+    const key = (event.key || '').toLowerCase();
+    const ctrlOrMeta = event.ctrlKey || event.metaKey;
+
+    const blocked =
+      (ctrlOrMeta && key === 'u') ||                         // View source
+      (ctrlOrMeta && key === 's') ||                         // Save page
+      (ctrlOrMeta && key === 'p') ||                         // Print
+      (ctrlOrMeta && event.shiftKey && ['i','j','c'].includes(key)) || // DevTools
+      key === 'f12';
+
+    if (blocked) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
+})();
+</script>
+
 </body>
 </html>
